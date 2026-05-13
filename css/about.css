@@ -145,6 +145,14 @@
     height: 300px;
 }
 
+.photo-focus-bottom-right {
+    object-position: right bottom;
+}
+
+.photo-focus-bottom {
+    object-position: bottom;
+}
+
 
 .next-img {
     opacity: 1;
