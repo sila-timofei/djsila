@@ -183,6 +183,7 @@
     margin-top: 15px;
     transition: all 1s linear;
     pointer-events: none;
+    padding: 0 20px;
 }
 
 .blackout:hover .text-card {
