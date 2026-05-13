@@ -157,6 +157,9 @@
     object-position: bottom;
 }
 
+.photo-focus-top {
+    object-position: top;
+}
 
 .next-img {
     opacity: 1;
