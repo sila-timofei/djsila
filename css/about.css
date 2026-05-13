@@ -269,7 +269,7 @@
 @media screen and (max-width: 740px) {
     .photo-w555,.photo-w278,.photo-w562-5,.photo-w370 {
         width: 49.5%;
-        height: 400px;
+        height: 450px;
     }
 }
 
@@ -285,6 +285,5 @@
 
     .photo-w555,.photo-w278,.photo-w562-5,.photo-w370 {
         width: 100%;
-        height: 350px;
     }
 }
