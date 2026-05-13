@@ -149,6 +149,10 @@
     object-position: right bottom;
 }
 
+.photo-focus-bottom-right {
+    object-position: right bottom;
+}
+
 .photo-focus-bottom {
     object-position: bottom;
 }
