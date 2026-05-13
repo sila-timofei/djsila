@@ -1,0 +1,162 @@
+.main-title {
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 40px;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+.left-side {
+    width: 563px;
+    height: 572px;
+    background-color: #fafafa;
+    padding: 0 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    text-align: center;
+    line-height: 25px;
+    color: #4a4a4a;
+    font-weight: 400;
+}
+
+.btn-next {
+    border: 3px solid black;
+    text-align: center;
+    padding: 11px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 800;
+    width: 148px;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    transition: all linear 0.4s;
+    margin-top: 60px;
+}
+
+.btn-next:hover {
+    background-color: black;
+    border: 3px solid black;
+    transition: all linear 0.4s;
+    color: white;
+}
+
+.right-side {
+    position: relative;
+    width: 563px;
+}
+
+.photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 49%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.exit-groom {
+    background-image: url(../img/playlist-groom.jpg);
+    background-position: top;
+}
+
+.ready-morning {
+    background-image: url(../img/playlist-ready-morning.jpg);
+}
+
+.morning-bride {
+    background-image: url(../img/playlist-morning-bride.jpg);
+}
+
+.first-dance {
+    background-image: url(../img/playlist-first-dance.jpg);
+}
+
+.paty {
+    background-image: url(../img/playlist-paty.jpg);
+}
+
+.honeymoon {
+    background-image: url(../img/playlist-honeymoon.jpg);
+}
+
+.unrestrained-dance {
+    background-image: url(../img/playlist-unrestrained-dance.jpg);
+}
+
+.hen-paty {
+    background-image: url(../img/playlist-hen-paty.jpg);
+}
+
+.weekend-together {
+    background-image: url(../img/playlist-weekend-together.jpg);
+    background-position: center top;
+}
+
+.exit-bride {
+    background-image: url(../img/playlist-exit-bride.jpg);
+}
+
+.hits-2000 {
+    background-image: url(../img/playlist-hits-2000.jpg);
+}
+
+.hits-1990 {
+    background-image: url(../img/playlist-hits-1990.jpg);
+}
+
+.hits-1980 {
+    background-image: url(../img/playlist-hits-1980.jpg);
+}
+
+.hits-2010 {
+    background-image: url(../img/playlist-hits-2010.jpg);
+}
+
+.hits-2020 {
+    background-image: url(../img/playlist-hits-2020.jpg);
+}
+
+.deep-house {
+    background-image: url(../img/playlist-deep-house.jpg);
+}
+
+.club-house {
+    background-image: url(../img/playlist-club-house.jpg);
+}
+
+.melodika-house {
+    background-image: url(../img/playlist-melodika-house.jpg);
+}
+
+.house {
+    background-image: url(../img/playlist-house.jpg);
+}
+
+.playlist {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 49%;
+    background-color: #f8f8fa;
+    visibility: hidden;
+}
+
+.playlist iframe {
+    margin-top: -32px;
+}

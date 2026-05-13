@@ -1,0 +1,245 @@
+.first-text {
+    padding: 50px 0;
+    text-align: center;
+    margin-bottom: 50px;
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+}
+
+.main-title {
+    font-weight: 800;
+    font-size: 36px;
+    white-space: pre-line;
+    line-height: 36px;
+    margin-bottom: 40px;
+}
+
+.text {
+    max-width: 680px;
+    color: #252525;
+    line-height: 25px;
+    margin: 0 auto;
+}
+
+.container-cards {
+    padding: 0;
+}
+
+.cards {
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-item {
+    position: relative;
+    width: 383px;
+    height: 480px;
+    overflow: hidden;
+    background-color: bisque;
+}
+
+.photo-playlist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+    background-size: cover;
+}
+
+.card-item:hover .photo-playlist {
+    transform: scale(1.5);
+}
+
+.wedding {
+    background-position: center;
+    background-image: url('../img/wedding.jpg');
+}
+
+.club {
+    background-position: center;
+    background-image: url('../img/club.jpg');
+}
+
+.corporative {
+    background-image: url('../img/corporative.jpg');
+}
+
+.blackout {
+    position: relative;
+    background-color: rgba(0,0,0,0.25);
+    height: 480px;
+    transition: all 1s linear;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-item:hover .blackout {
+    background-color: rgba(0,0,0,0.70);
+    transition: all 0.7s linear;
+}
+
+.wrap-title-text-btn {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(50%);
+    transition: all 1s linear;
+}
+
+.blackout:hover .wrap-title-text-btn {
+    transform: translateY(0);
+    transition: all 0.7s linear;
+}
+
+.title-card {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    transition: all 1s linear;
+    pointer-events: none;
+}
+
+.text-card {
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+    opacity: 0;
+    margin-top: 15px;
+    transition: all 1s linear;
+    white-space: pre-line;
+    text-transform: none;
+    pointer-events: none;
+}
+
+.blackout:hover .text-card {
+    opacity: 1;
+    margin-top: 0;
+    transition: all 0.7s linear;
+    line-height: 18px;
+}
+
+.btn-card {
+    position: relative;
+    padding: 12px 20px;
+    font-weight: 800;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 1s linear;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-card span {
+    position: absolute;
+    background: rgba(5, 5, 5, 0.8);
+    transition: 0.5s;
+    z-index: -1;
+    width: 0;
+    height: 0;
+}
+
+.btn-card:hover span {
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+}
+
+.blackout:hover .btn-card {
+    opacity: 1;
+    margin-top: 0;
+    transition: all 0.7s linear;
+}
+
+.btn-card::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    border: 3px solid white;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.btn-card:hover::after {
+    border: 1px solid white;
+}
+
+.container-text {
+    background-color: #eeeded;
+    padding: 50px 20px;
+}
+
+.text-thank {
+    font-weight: 500;
+    white-space: pre-line;
+    text-align: center;
+    font-size: 25px;
+}
+
+
+
+@media screen and (max-width: 1170px) {
+    .card-item {
+        height: 450px;
+        margin-right: 14px;
+    }
+
+    .card-item:first-child {
+        margin-left: 14px;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .cards {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: -14px;
+    }
+
+    .card-item:first-child {
+        margin-right: 14px;
+    }
+
+    .card-item {
+        width: 70%;
+        margin-top: 14px;
+        margin-left: 14px;
+    }
+
+    .wrap-title-text-btn {
+        transform: translateY(0);
+    }
+
+    .text-card,.btn-card {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .first-text {
+        margin-bottom: 50px;
+    }
+
+    .card-item {
+        width: 100%;
+    }
+
+    .text-thank {
+        white-space: normal;
+    }
+}

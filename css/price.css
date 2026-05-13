@@ -1,0 +1,61 @@
+.section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+.price {
+    background-color: #fafafa;
+    padding: 45px 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 49.5%;
+}
+
+.title {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 45px;
+}
+
+.text {
+    line-height: 25px;
+    color: #4a4a4a;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 40px;
+    font-size: 14px;
+}
+
+.form-send {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 45px 0;
+    width: 49.5%;
+    background-color: #eeeded;
+}
+
+
+
+@media screen and (max-width: 640px) {
+    .section {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .price,.form-send {
+        width: 100%;
+    }
+
+    .price {
+        margin-bottom: 11.46px;
+    }
+
+    .btn-form {
+        width: 80%;
+    }
+}

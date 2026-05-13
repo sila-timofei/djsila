@@ -1,0 +1,277 @@
+.first-text {
+    padding-top: 24px;
+    margin-bottom: 80px;
+}
+
+.main-title {
+    font-weight: 800;
+    font-size: 36px;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.text {
+    max-width: 680px;
+    font-weight: 400;
+    color: #252525;
+    line-height: 25px;
+    margin: 0 auto;
+    text-align: center;
+}    
+
+.container-cards {
+    padding: 0;
+}
+
+.cards {
+    margin-bottom: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: -10px;
+}
+
+.card-item {
+    position: relative;
+    width: 32.333333333333%;
+    height: 283px;
+    overflow: hidden;
+    margin-top: 10px;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
+}
+
+.photo-playlist {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-item:hover .photo-playlist {
+    transform: scale(1.5);
+}
+
+.ready-morning {
+    background-image: url(../img/playlist-ready-morning.jpg);
+}
+
+.groom {
+    background-image: url(../img/playlist-groom.jpg);
+}
+
+.morning-bride {
+    background-image: url(../img/playlist-morning-bride.jpg);
+}
+
+.first-dance {
+    background-image: url(../img/playlist-first-dance.jpg);
+}
+
+.paty {
+    background-image: url(../img/playlist-paty.jpg);
+}
+
+.honeymoon {
+    background-image: url(../img/playlist-honeymoon.jpg);
+}
+
+.unrestrained-dance {
+    background-image: url(../img/playlist-unrestrained-dance.jpg);
+}
+
+.hen-paty {
+    background-image: url(../img/playlist-hen-paty.jpg);
+}
+
+.weekend-together {
+    background-image: url(../img/playlist-weekend-together.jpg);
+    background-position: center top;
+}
+
+.exit-bride {
+    background-image: url(../img/playlist-exit-bride.jpg);
+}
+
+
+.hits-2000 {
+    background-image: url(../img/playlist-hits-2000.jpg);
+}
+
+.hits-1990 {
+    background-image: url(../img/playlist-hits-1990.jpg);
+}
+
+.hits-1980 {
+    background-image: url(../img/playlist-hits-1980.jpg);
+}
+
+.hits-2010 {
+    background-image: url(../img/playlist-hits-2010.jpg);
+}
+
+.hits-2020 {
+    background-image: url(../img/playlist-hits-2020.jpg);
+}
+
+.deep-house {
+    background-image: url(../img/playlist-deep-house.jpg);
+}
+
+.club-house {
+    background-image: url(../img/playlist-club-house.jpg);
+}
+
+.melodika-house {
+    background-image: url(../img/playlist-melodika-house.jpg);
+}
+
+.house {
+    background-image: url(../img/playlist-house.jpg);
+}
+
+.blackout {
+    position: relative;
+    background-color: rgba(0,0,0,0.25);
+    height: 283px;
+    transition: all 1s linear;
+    text-align: center;
+    color: white;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-item:hover .blackout {
+    background-color: rgba(0,0,0,0.70);
+    transition: all 0.6s linear;
+}
+
+.wrap-title-text-btn {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(50%);
+    transition: all 1s linear;
+}
+
+.blackout:hover .wrap-title-text-btn {
+    transform: translateY(0);
+    transition: all 0.6s linear;
+}
+
+.title-card {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    pointer-events: none;
+    transition: all 1s linear;
+}
+
+.text-card {
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 14px;
+    opacity: 0;
+    margin-top: 15px;
+    transition: all 1s linear;
+    pointer-events: none;
+}
+
+.blackout:hover .text-card {
+    opacity: 1;
+    margin-top: 0;
+    transition: all 0.6s linear;
+}
+
+.btn-card {
+    position: relative;
+    padding: 12px 18px;
+    font-weight: 800;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 1s linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-card span {
+    position: absolute;
+    background: rgba(5, 5, 5, 0.8);
+    transition: 0.5s;
+    z-index: -1;
+    width: 0;
+    height: 0;
+}
+
+.btn-card:hover span {
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+}
+
+.blackout:hover .btn-card {
+    opacity: 1;
+    margin-top: 0;
+    transition: all 0.6s linear;
+}
+
+.btn-card::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    border: 3px solid white;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.btn-card:hover::after {
+    border: 1px solid white;
+}
+
+
+
+
+
+@media screen and (max-width: 940px) {
+    .cards {
+        margin-top: -1.6%;
+    }
+
+    .card-item {
+        width: 49.2%;
+        margin-top: 1.6%;
+    }
+
+    .wrap-title-text-btn {
+        transform: translateY(0);
+    }
+
+    .text-card,.btn-card {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .cards {
+        margin-top: -10px;
+    }
+
+    .card-item {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
