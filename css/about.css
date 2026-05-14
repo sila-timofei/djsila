@@ -235,6 +235,8 @@
     max-height: 90%;
     transform: scale(0.95);
     transition: transform 0.3s ease;
+    touch-action:none;
+    will-change:transform;
 }
 
 .modal-show .lightbox__image {
