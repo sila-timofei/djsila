@@ -133,4 +133,8 @@
         background-color: #fafafa;
     }
 
+    .modal__body {
+        margin-top: 0;
+    }
+
 }
