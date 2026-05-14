@@ -6,7 +6,7 @@
 
 .price {
     background-color: #fafafa;
-    padding: 45px 15px;
+    padding: 45px;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -30,15 +30,89 @@
     font-size: 14px;
 }
 
-.form-send {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 45px 0;
+.right-side {
     width: 49.5%;
     background-color: #eeeded;
 }
 
+.right-side > img {
+    object-fit: cover;
+    object-position: top center;
+    height: 480px;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 1);
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.modal-show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+.modal-show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal__btn-close {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    background-image: url('../img/icons/close-window.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: 0.2s;
+    z-index: 200000;
+    opacity: 0.5;
+    background-color: white;
+}
+
+.modal__btn-close:hover {
+    background-image: url('../img/icons/close-window.png');
+    opacity: 1;
+}
+
+.modal__body {
+    text-align: center;
+    background-color: #fafafa;
+    max-width: 770px;
+    padding: 50px 45px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.modal__title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.modal__text {
+    white-space: pre-line;
+    margin-bottom: 100px;
+    line-height: 28px;
+    font-size: 14px;
+}
+
+.modal__text > span {
+    color: #ED3551;
+}
 
 
 @media screen and (max-width: 640px) {
@@ -47,7 +121,7 @@
         flex-direction: column;
     }
 
-    .price,.form-send {
+    .price,.right-side {
         width: 100%;
     }
 
@@ -55,7 +129,8 @@
         margin-bottom: 11.46px;
     }
 
-    .btn-form {
-        width: 80%;
+    .modal {
+        background-color: #fafafa;
     }
+
 }
