@@ -1,32 +1,78 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const galleryItems = document.querySelectorAll('.photo-gallery');
+    // =====================
+    // GALLERY SHOW MORE
+    // =====================
+
+    const galleryItemsWrap = document.querySelectorAll('.gallery .wrap-photo');
+    const showMoreItem = document.querySelector('.show-more-item');
+
+    let isExpanded = false;
+    const initialCount = 8;
+
+    function applyGalleryState() {
+        galleryItemsWrap.forEach((item, index) => {
+
+            // 8-я карточка всегда видна
+            if (!isExpanded && item.classList.contains('show-more-item')) {
+                item.style.display = 'block';
+                return;
+            }
+
+            if (isExpanded) {
+                item.style.display = 'block';
+                return;
+            }
+
+            item.style.display = index < initialCount ? 'block' : 'none';
+        });
+    }
+
+    if (showMoreItem) {
+        showMoreItem.addEventListener('click', () => {
+
+            isExpanded = true;
+            applyGalleryState();
+
+            // 🔥 УБИРАЕМ OVERLAY (важный момент)
+            const overlay = showMoreItem.querySelector('.show-more-overlay');
+            if (overlay) {
+                overlay.style.opacity = '0';
+                overlay.style.pointerEvents = 'none';
+            }
+
+        });
+    }
+
+    applyGalleryState();
+
+
+    // =====================
+    // LIGHTBOX
+    // =====================
+
     const modal = document.querySelector('.modal');
     const modalImage = document.querySelector('.lightbox__image');
     const closeBtn = document.querySelector('.modal__btn-close');
 
     let currentIndex = 0;
 
-    // массив src
-    const images = [...galleryItems].map(item => item.src);
+    function getImages() {
+        return [...document.querySelectorAll('.photo-gallery')].map(img => img.src);
+    }
 
-    // открыть
     function openModal(index) {
+        const images = getImages();
 
         currentIndex = index;
-
         modalImage.src = images[currentIndex];
 
         modal.classList.add('modal-show');
-
         document.body.classList.add('hidden-body');
     }
 
-    // закрыть
     function closeModal() {
-
         modal.classList.remove('modal-show');
-
         document.body.classList.remove('hidden-body');
 
         setTimeout(() => {
@@ -34,75 +80,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
     }
 
-    // следующее фото
     function nextImage() {
+        const images = getImages();
 
-        currentIndex++;
-
-        if (currentIndex >= images.length) {
-            currentIndex = 0;
-        }
-
+        currentIndex = (currentIndex + 1) % images.length;
         modalImage.src = images[currentIndex];
     }
 
-    // предыдущее фото
     function prevImage() {
+        const images = getImages();
 
-        currentIndex--;
-
-        if (currentIndex < 0) {
-            currentIndex = images.length - 1;
-        }
-
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
         modalImage.src = images[currentIndex];
     }
 
-    // клик по фото
-    galleryItems.forEach((item, index) => {
-
+    document.querySelectorAll('.photo-gallery').forEach((item, index) => {
         item.addEventListener('click', () => {
             openModal(index);
         });
-
     });
 
-    // закрыть
     closeBtn.addEventListener('click', closeModal);
 
-    // закрытие по фону
     modal.addEventListener('click', (e) => {
-
-        if (e.target === modal) {
-            closeModal();
-        }
-
+        if (e.target === modal) closeModal();
     });
 
-    // стрелки
     document.querySelector('.lightbox__arrow_right')
         .addEventListener('click', nextImage);
 
     document.querySelector('.lightbox__arrow_left')
         .addEventListener('click', prevImage);
 
-    // клавиатура
     document.addEventListener('keydown', (e) => {
 
         if (!modal.classList.contains('modal-show')) return;
 
-        if (e.key === 'Escape') {
-            closeModal();
-        }
-
-        if (e.key === 'ArrowRight') {
-            nextImage();
-        }
-
-        if (e.key === 'ArrowLeft') {
-            prevImage();
-        }
-
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowRight') nextImage();
+        if (e.key === 'ArrowLeft') prevImage();
     });
 
 });
