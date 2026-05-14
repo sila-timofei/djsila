@@ -12,7 +12,7 @@ const playlists = {
         image: "img/playlist-ready-morning.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:410px;" width="100%" height="410" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href='https://music.yandex.ru/users/posta-vip/playlists/1058'>Get ready</a> — <a href='https://music.yandex.ru/users/posta-vip'>SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href='https://music.yandex.ru/users/posta-vip/playlists/1058'>Get ready</a> — <a href='https://music.yandex.ru/users/posta-vip'>SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
@@ -27,7 +27,7 @@ const playlists = {
         image: "img/playlist-groom.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:314px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1054">Слушайте <a href="https://music.yandex.ru/playlists/08f84f3a-d358-50b7-99e3-36048aed4bf6?utm_source=web&utm_medium=copy_link">Groom exit</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1054">Слушайте <a href="https://music.yandex.ru/playlists/08f84f3a-d358-50b7-99e3-36048aed4bf6?utm_source=web&utm_medium=copy_link">Groom exit</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
