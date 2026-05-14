@@ -135,44 +135,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =====================
-    // SWIPE SUPPORT (MOBILE)
-    // =====================
+// SWIPE + DRAG IMAGE
+// =====================
 
-    let startX = 0;
-    let startY = 0;
+let startX = 0;
+let startY = 0;
+let currentX = 0;
+let currentY = 0;
+let isDragging = false;
 
-    if (modal) {
+if (modal && modalImage) {
 
-        modal.addEventListener('touchstart', (e) => {
-            const touch = e.touches[0];
-            startX = touch.clientX;
-            startY = touch.clientY;
-        }, { passive: true });
+    modalImage.addEventListener('touchstart', (e) => {
 
-        modal.addEventListener('touchend', (e) => {
-            const touch = e.changedTouches[0];
+        const touch = e.touches[0];
 
-            const diffX = touch.clientX - startX;
-            const diffY = touch.clientY - startY;
+        startX = touch.clientX;
+        startY = touch.clientY;
 
-            const absX = Math.abs(diffX);
-            const absY = Math.abs(diffY);
+        isDragging = true;
 
-            // свайп вправо/влево
-            if (absX > absY && absX > 50) {
-                if (diffX > 0) {
-                    prevImage();
-                } else {
-                    nextImage();
-                }
+        modalImage.style.transition = 'none';
+
+    }, { passive: true });
+
+
+    modalImage.addEventListener('touchmove', (e) => {
+
+        if (!isDragging) return;
+
+        const touch = e.touches[0];
+
+        currentX = touch.clientX - startX;
+        currentY = touch.clientY - startY;
+
+        // двигаем картинку за пальцем
+        modalImage.style.transform =
+            `translate(${currentX}px, ${currentY}px)`;
+
+    }, { passive: true });
+
+
+    modalImage.addEventListener('touchend', () => {
+
+        isDragging = false;
+
+        modalImage.style.transition =
+            'transform .25s ease';
+
+        const absX = Math.abs(currentX);
+        const absY = Math.abs(currentY);
+
+        // горизонтальный свайп
+        if (absX > absY && absX > 80) {
+
+            if (currentX > 0) {
+                prevImage();
+            } else {
+                nextImage();
             }
 
-            // свайп вверх — закрытие
-            if (absY > absX && diffY < -60) {
-                closeModal();
-            }
+        }
 
-        }, { passive: true });
-    }
+        // свайп вверх закрывает
+        else if (absY > absX && currentY < -100) {
+
+            closeModal();
+        }
+
+        // возврат картинки
+        modalImage.style.transform =
+            'translate(0,0)';
+
+        currentX = 0;
+        currentY = 0;
+
+    }, { passive: true });
+
+}
 
 });
