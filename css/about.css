@@ -68,7 +68,10 @@
 }
 
 .gallery {
-    margin-bottom: 80px;
+    margin-bottom: 100px;
+}
+
+.gallery {
     margin-top: -15px;
     margin-right: -1%;
     display: flex;
@@ -82,6 +85,10 @@
     overflow: hidden;
     margin-top: 15px;
     margin-right: 1%;
+}
+
+.video-gallery {
+    margin-bottom: 80px;
 }
 
 .wrap-photo::after {
@@ -154,6 +161,85 @@
 
 .photo-focus-top {
     object-position: top;
+}
+
+
+.wrap-video {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    max-width: 800px;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1%;
+}
+
+/* затемнение */
+
+.wrap-video::after{
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(0,0,0,0);
+
+    transition:.4s;
+
+    pointer-events:none;
+}
+
+/* наведение */
+
+.wrap-video:hover::after{
+    background:rgba(0,0,0,.45);
+}
+
+
+.wrap-video img{
+    width:100%;
+    height:405px;
+    object-fit:cover;
+    display:block;
+}
+
+
+.play-btn{
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:80px;
+    height:80px;
+
+    border-radius:50%;
+
+    border:2px solid white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:30px;
+
+    color:white;
+
+    z-index:2;
+
+    transition:.3s;
+}
+
+.wrap-video:hover .play-btn{
+    transform:translate(-50%,-50%) scale(1.1);
 }
 
 
