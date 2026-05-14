@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isExpanded = true;
             applyGalleryState();
 
-            // 🔥 УБИРАЕМ OVERLAY (важный момент)
+            // скрываем overlay мягко
             const overlay = showMoreItem.querySelector('.show-more-overlay');
             if (overlay) {
                 overlay.style.opacity = '0';
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setTimeout(() => {
             modalImage.src = '';
-        }, 300);
+        }, 200);
     }
 
     function nextImage() {
@@ -94,31 +94,85 @@ document.addEventListener('DOMContentLoaded', () => {
         modalImage.src = images[currentIndex];
     }
 
-    document.querySelectorAll('.photo-gallery').forEach((item, index) => {
-        item.addEventListener('click', () => {
-            openModal(index);
+    function bindGalleryClicks() {
+        document.querySelectorAll('.photo-gallery').forEach((item, index) => {
+            item.addEventListener('click', () => {
+                openModal(index);
+            });
         });
-    });
+    }
 
-    closeBtn.addEventListener('click', closeModal);
+    bindGalleryClicks();
 
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
 
-    document.querySelector('.lightbox__arrow_right')
-        .addEventListener('click', nextImage);
+    // =====================
+    // CONTROLS
+    // =====================
 
-    document.querySelector('.lightbox__arrow_left')
-        .addEventListener('click', prevImage);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    }
+
+    const rightArrow = document.querySelector('.lightbox__arrow_right');
+    const leftArrow = document.querySelector('.lightbox__arrow_left');
+
+    if (rightArrow) rightArrow.addEventListener('click', nextImage);
+    if (leftArrow) leftArrow.addEventListener('click', prevImage);
+
 
     document.addEventListener('keydown', (e) => {
 
-        if (!modal.classList.contains('modal-show')) return;
+        if (!modal || !modal.classList.contains('modal-show')) return;
 
         if (e.key === 'Escape') closeModal();
         if (e.key === 'ArrowRight') nextImage();
         if (e.key === 'ArrowLeft') prevImage();
     });
+
+
+    // =====================
+    // SWIPE SUPPORT (MOBILE)
+    // =====================
+
+    let startX = 0;
+    let startY = 0;
+
+    if (modal) {
+
+        modal.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+        }, { passive: true });
+
+        modal.addEventListener('touchend', (e) => {
+            const touch = e.changedTouches[0];
+
+            const diffX = touch.clientX - startX;
+            const diffY = touch.clientY - startY;
+
+            const absX = Math.abs(diffX);
+            const absY = Math.abs(diffY);
+
+            // свайп вправо/влево
+            if (absX > absY && absX > 50) {
+                if (diffX > 0) {
+                    prevImage();
+                } else {
+                    nextImage();
+                }
+            }
+
+            // свайп вверх — закрытие
+            if (absY > absX && diffY < -60) {
+                closeModal();
+            }
+
+        }, { passive: true });
+    }
 
 });
