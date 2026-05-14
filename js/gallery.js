@@ -134,15 +134,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
-    // =====================
-// SWIPE + DRAG IMAGE
+// =====================
+// SWIPE + DRAG IMAGE (LOCK AXIS)
 // =====================
 
 let startX = 0;
 let startY = 0;
+
 let currentX = 0;
 let currentY = 0;
+
 let isDragging = false;
+let axis = null; // x | y
 
 if (modal && modalImage) {
 
@@ -153,6 +156,10 @@ if (modal && modalImage) {
         startX = touch.clientX;
         startY = touch.clientY;
 
+        currentX = 0;
+        currentY = 0;
+
+        axis = null;
         isDragging = true;
 
         modalImage.style.transition = 'none';
@@ -169,9 +176,37 @@ if (modal && modalImage) {
         currentX = touch.clientX - startX;
         currentY = touch.clientY - startY;
 
-        // двигаем картинку за пальцем
-        modalImage.style.transform =
-            `translate(${currentX}px, ${currentY}px)`;
+
+        // определяем ось один раз
+        if (!axis) {
+
+            if (
+                Math.abs(currentX) >
+                Math.abs(currentY)
+            ) {
+                axis = 'x';
+            } else {
+                axis = 'y';
+            }
+
+        }
+
+
+        // движение только по X
+        if (axis === 'x') {
+
+            modalImage.style.transform =
+                `translateX(${currentX}px)`;
+
+        }
+
+        // движение только по Y
+        if (axis === 'y') {
+
+            modalImage.style.transform =
+                `translateY(${currentY}px)`;
+
+        }
 
     }, { passive: true });
 
@@ -186,8 +221,12 @@ if (modal && modalImage) {
         const absX = Math.abs(currentX);
         const absY = Math.abs(currentY);
 
-        // горизонтальный свайп
-        if (absX > absY && absX > 80) {
+
+        // перелистывание
+        if (
+            axis === 'x' &&
+            absX > 80
+        ) {
 
             if (currentX > 0) {
                 prevImage();
@@ -197,18 +236,21 @@ if (modal && modalImage) {
 
         }
 
-        // свайп вверх закрывает
-        else if (absY > absX && currentY < -100) {
+        // закрытие вверх
+        if (
+            axis === 'y' &&
+            currentY < -100
+        ) {
 
             closeModal();
         }
 
-        // возврат картинки
+
+        // возврат
         modalImage.style.transform =
             'translate(0,0)';
 
-        currentX = 0;
-        currentY = 0;
+        axis = null;
 
     }, { passive: true });
 
