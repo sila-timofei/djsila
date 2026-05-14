@@ -178,7 +178,7 @@ const playlists = {
         image: "img/playlist-club-house.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:300px;" width="100%" height="300" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href="https://music.yandex.ru/playlists/ef8127e0-9711-8ce3-b5e0-cade03f59486?utm_source=web&utm_medium=copy_link">Get ready</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1082">Слушайте <a href="https://music.yandex.ru/playlists/b6eab33b-2398-cb36-ad66-16e04395a945?utm_source=web&utm_medium=copy_link">Dance / Electro POP</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
@@ -193,7 +193,7 @@ const playlists = {
         image: "img/playlist-melodika-house.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:300px;" width="100%" height="300" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href="https://music.yandex.ru/playlists/ef8127e0-9711-8ce3-b5e0-cade03f59486?utm_source=web&utm_medium=copy_link">Get ready</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1084">Слушайте <a href="https://music.yandex.ru/playlists/b01fd7a5-55c2-e4db-9291-5e858de3d207?utm_source=web&utm_medium=copy_link">Melodic House & Techno</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
@@ -208,7 +208,7 @@ const playlists = {
         image: "img/playlist-house.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:300px;" width="100%" height="300" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href="https://music.yandex.ru/playlists/ef8127e0-9711-8ce3-b5e0-cade03f59486?utm_source=web&utm_medium=copy_link">Get ready</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1085">Слушайте <a href="https://music.yandex.ru/playlists/310e1403-e0bf-f2f4-9c5e-2e329431d242?utm_source=web&utm_medium=copy_link">House</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
@@ -225,7 +225,7 @@ const playlists = {
         image: "img/playlist-hits-2000.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:300px;" width="100%" height="300" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href="https://music.yandex.ru/playlists/ef8127e0-9711-8ce3-b5e0-cade03f59486?utm_source=web&utm_medium=copy_link">Get ready</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1088">Слушайте <a href="https://music.yandex.ru/playlists/49c91cfb-d530-d1f4-b9f2-c6c0cc19d5d7?utm_source=web&utm_medium=copy_link">Плейлист ХИТОВ 2000-х годов</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
@@ -240,7 +240,7 @@ const playlists = {
         image: "img/playlist-hits-1990.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:300px;" width="100%" height="300" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href="https://music.yandex.ru/playlists/ef8127e0-9711-8ce3-b5e0-cade03f59486?utm_source=web&utm_medium=copy_link">Get ready</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1087">Слушайте <a href="https://music.yandex.ru/playlists/1d1f6e51-4801-79e9-8c3f-4e5bf2048fd7?utm_source=web&utm_medium=copy_link">Плейлист ХИТОВ 1990-х годов</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
@@ -255,7 +255,7 @@ const playlists = {
         image: "img/playlist-hits-1980.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:300px;" width="100%" height="300" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href="https://music.yandex.ru/playlists/ef8127e0-9711-8ce3-b5e0-cade03f59486?utm_source=web&utm_medium=copy_link">Get ready</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1086">Слушайте <a href="https://music.yandex.ru/playlists/cf3af04e-0abb-9c49-8659-ce61efe81734?utm_source=web&utm_medium=copy_link">Плейлист ХИТОВ 1980-х годов</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
@@ -270,7 +270,7 @@ const playlists = {
         image: "img/playlist-hits-2010.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:300px;" width="100%" height="300" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href="https://music.yandex.ru/playlists/ef8127e0-9711-8ce3-b5e0-cade03f59486?utm_source=web&utm_medium=copy_link">Get ready</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1089">Слушайте <a href="https://music.yandex.ru/playlists/e106ed79-c2af-f07c-8fff-829fd9d74e3a?utm_source=web&utm_medium=copy_link">Плейлист ХИТОВ 2010-х годов</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
@@ -290,4 +290,3 @@ const playlists = {
     }
 
 };
-
