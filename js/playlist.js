@@ -42,7 +42,7 @@ const playlists = {
         image: "img/playlist-morning-bride.jpg",
 
         iframe: `
-            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:300px;" width="100%" height="300" src="https://music.yandex.ru/iframe/playlist/posta-vip/1058">Слушайте <a href="https://music.yandex.ru/playlists/ef8127e0-9711-8ce3-b5e0-cade03f59486?utm_source=web&utm_medium=copy_link">Get ready</a> — <a href="https://music.yandex.ru/users/posta-vip">SILA</a> на Яндекс Музыке</iframe>
+            <iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;height:312px;" src="https://music.yandex.ru/iframe/playlist/posta-vip/1056">Слушайте <a href='https://music.yandex.ru/users/posta-vip/playlists/1056'>Brides morning</a> — <a href='https://music.yandex.ru/users/posta-vip'>SILA</a> на Яндекс Музыке</iframe>
         `
     },
 
