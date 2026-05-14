@@ -177,15 +177,21 @@
   align-items: center;
 }
 
+.lightbox__arrow > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .lightbox__arrow span {
     color: rgba(0, 0, 0, 0.5);
     transition: 0.2s;
     font-size: 24px;
     width: 50px;
     height: 50px;
-    border-radius: 100%;
     text-align: center;
-    line-height: 45px;
+    justify-content: center;
+    
 }
 
 .lightbox__arrow:hover span {
@@ -225,7 +231,7 @@
 
 .lightbox__image {
     object-fit: contain;
-    max-width: 80%;
+    max-width: 90%;
     max-height: 90%;
     transform: scale(0.95);
     transition: transform 0.3s ease;
@@ -241,7 +247,6 @@
     top: 0;
     width: 100px;
     height: 100px;
-    border-radius: 50%;
     background-image: url('../img/icons/close-window.png');
     background-position: center;
     background-repeat: no-repeat;
@@ -294,17 +299,52 @@
     .photo-w278 {
         width: 24%;
     }
-
-    .close-window {
-        top: 20px;
-        right: 20px;
-    }
 }
 
 @media screen and (max-width: 740px) {
     .photo-w555,.photo-w278,.photo-w562-5,.photo-w370 {
         width: 49.5%;
         height: 450px;
+    }
+
+    .modal__btn-close {
+        background-color: rgba(255, 255, 255, 0.85);
+        width: 40px;
+        height: 40px;
+        opacity: 1;
+        right: 20px;
+        top: 20px;
+    }
+
+    .lightbox__arrow {
+        bottom: 30px;
+        height: 40px;
+        width: auto;
+        top: auto;
+    }
+
+    .lightbox__arrow_left {
+        left: 20px;
+    }
+
+    .lightbox__arrow_right {
+        right: 20px;
+    }
+
+    .lightbox__arrow span {
+        background-color: rgba(255, 255, 255, 0.85);
+        width: 40px;
+        height: 40px;
+    }
+
+    .lightbox__arrow:hover span {
+        color: rgb(0, 0, 0);
+        font-size: 24px;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox__image {
+        max-width: 100%;
     }
 }
 
