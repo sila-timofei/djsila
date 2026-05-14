@@ -111,7 +111,6 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
     cursor: url('../img/icons/magnifier.png'), pointer;
     transition: 1s;
     object-fit: cover;
@@ -149,10 +148,6 @@
     object-position: right bottom;
 }
 
-.photo-focus-bottom-right {
-    object-position: right bottom;
-}
-
 .photo-focus-bottom {
     object-position: bottom;
 }
@@ -160,6 +155,7 @@
 .photo-focus-top {
     object-position: top;
 }
+
 
 .next-img {
     opacity: 1;
@@ -260,6 +256,30 @@
     opacity: 1;
 }
 
+.show-more-item {
+    position: relative;
+    cursor: pointer;
+}
+
+.show-more-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 16px;
+    opacity: 1;
+    transition: 0.3s;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.show-more-item:hover .show-more-overlay {
+    background: rgba(0,0,0,0.8);
+}
+
 
 
 @media screen and (max-width: 940px) {
@@ -285,10 +305,6 @@
     .photo-w555,.photo-w278,.photo-w562-5,.photo-w370 {
         width: 49.5%;
         height: 450px;
-    }
-
-    .lightbox__image {
-        max-width: 90%;
     }
 }
 
