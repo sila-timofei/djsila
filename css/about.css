@@ -316,18 +316,40 @@
     visibility: visible;
 }
 
-.lightbox__image {
-    object-fit: contain;
-    max-width: 90%;
-    max-height: 90%;
-    transform: scale(0.95);
-    transition: transform 0.3s ease;
-    touch-action:none;
+.modal{
+    position:fixed;
+    inset:0;
+
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(255,255,255,.95);
+}
+
+.lightbox__image{
+
+    position:absolute;
+
+    max-width:90%;
+    max-height:90%;
+
+    object-fit:contain;
+
+    transition:
+    transform .45s cubic-bezier(.22,.61,.36,1);
+
     will-change:transform;
 }
 
-.modal-show .lightbox__image {
-    transform: scale(1);
+.current-image{
+    transform:translateX(0);
+}
+
+.next-image{
+    transform:translateX(150%);
 }
 
 .modal__btn-close {
