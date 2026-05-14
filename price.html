@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/footer-header.css"/>
     <link rel="stylesheet" href="css/reset.css"/>
     <link rel="stylesheet" href="css/fonts.css"/>
-    <link rel="stylesheet" href="css/price.css"/>
+    <link rel="stylesheet" href="css/price.css?=ver3430"/>
     <title>Условия</title>
 </head>
 <body class="document">
@@ -45,11 +45,28 @@
                 <p class="text">
                     Предпочитаю индивидуальный подход к каждому, обговорим ваши пожелания и составив бюджет, для проведения вашего праздника или вечеринки. Оставляйте ваши контакты и я с вами обязательно свяжусь, либо можете связаться со мной любым удобным для вас способом, в разделе «Контакты».
                 </p>
+                <a href="#" class="btn-contact btn-modal">назначить встречу</a>
             </div>
 
-            <form class="form-send" action="consume/mail.php" method="POST">
-       
-            </form>
+            <div class="right-side">
+                <img src="img/price.webp" alt="DJ Sila">
+            </div>
+        </div>
+
+        <div class="modal">
+            <div class="modal__body">
+                <div class="modal__title">Давайте познакомимся</div>
+                    <p class="modal__text">Если вам удобно, мы можем встретиться лично за чашкой кофе или чая. Но чтобы сэкономить ваше время, первую встречу-знакомство можно провести онлайн — в удобном для вас формате.
+
+                    <span>Zoom, Skype, WhatsApp, FaceTime.</span>
+                
+                    Обычно достаточно 15–20 минут, чтобы спокойно познакомиться, обсудить ваш день и составить первое впечатление друг о друге.
+
+                    Если вам откликается такой формат, просто напишите мне.</p>
+
+                    <div class="modal__btn-close"></div>
+                    <a href="https://t.me/SilaDanil" target="_blank" class="btn-contact">написать мне</a>
+            </div>
         </div>
     </main>
     
@@ -60,5 +77,29 @@
     </footer>
 
     <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.querySelector('.modal');
+            const closeBtn = document.querySelector('.modal__btn-close');
+            const openBtn = document.querySelector('.btn-modal');
+
+            function openModal() {
+
+                modal.classList.add('modal-show');
+
+                document.body.classList.add('hidden-body');
+            }
+
+            function closeModal() {
+
+                modal.classList.remove('modal-show');
+
+                document.body.classList.remove('hidden-body');
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+            openBtn.addEventListener('click', openModal);
+        });
+    </script>
 </body>
 </html>
