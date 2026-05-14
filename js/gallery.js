@@ -84,10 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal=
         document.querySelector('.modal');
 
-    const modalImage=
-        document.querySelector(
-            '.lightbox__image'
-        );
+        const currentImage=
+        document.querySelector('.current-image');
+
+        const nextImageLayer=
+        document.querySelector('.next-image');
 
     const closeBtn=
         document.querySelector(
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentIndex=0;
 
-    let animating=false;
+    
 
 
 
@@ -119,8 +120,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         currentIndex=index;
 
-        modalImage.src=
-            images[currentIndex];
+        currentImage.src=
+        images[currentIndex];
+
+        currentImage.style.transform=
+        'translateX(0)';
+
+        nextImageLayer.style.transform=
+        'translateX(150%)';
 
         modal.classList.add(
             'modal-show'
@@ -161,111 +168,107 @@ document.addEventListener('DOMContentLoaded', () => {
     // =====================
 
 
-    function changeImage(direction){
+let animating=false;
 
-        if(animating)return;
+function changeImage(direction){
 
-        animating=true;
+    if(animating)return;
 
-        const images=getImages();
+    animating=true;
 
+    const images=getImages();
 
-        const oldImg=
-            modalImage.cloneNode();
-
-        oldImg.src=
-            modalImage.src;
-
-        oldImg.classList.add(
-            'lightbox-clone'
-        );
-
-        modal.append(oldImg);
+    let newIndex;
 
 
+    if(direction==='next'){
 
-        requestAnimationFrame(()=>{
+        newIndex=
+        (currentIndex+1)
+        %
+        images.length;
 
-            oldImg.style.transform=
-                direction==='next'
-                ?
-                'translateX(-120%)'
-                :
-                'translateX(120%)';
+        nextImageLayer.style.transform=
+        'translateX(150%)';
 
-        });
+    }
+
+    else{
+
+        newIndex=
+        (
+            currentIndex-1+
+            images.length
+        )
+        %
+        images.length;
+
+        nextImageLayer.style.transform=
+        'translateX(-150%)';
+
+    }
 
 
+    nextImageLayer.src=
+    images[newIndex];
+
+
+
+    requestAnimationFrame(()=>{
 
         if(direction==='next'){
 
-            currentIndex=
-            (
-                currentIndex+1
-            )
-            %
-            images.length;
+            currentImage.style.transform=
+            'translateX(-150%)';
+
+        }else{
+
+            currentImage.style.transform=
+            'translateX(150%)';
 
         }
 
 
-        if(direction==='prev'){
+        nextImageLayer.style.transform=
+        'translateX(0)';
 
-            currentIndex=
-            (
-                currentIndex-1+
-                images.length
-            )
-            %
-            images.length;
-
-        }
+    });
 
 
 
-        modalImage.style.transition=
-            'none';
+    setTimeout(()=>{
+
+        currentImage.src=
+        images[newIndex];
+
+        currentImage.style.transition='none';
+
+        currentImage.style.transform=
+        'translateX(0)';
+
+        nextImageLayer.style.transition='none';
+
+        nextImageLayer.style.transform=
+        'translateX(150%)';
 
 
-        modalImage.src=
-            images[currentIndex];
+        currentImage.offsetHeight;
 
 
+        currentImage.style.transition=
+        'transform .45s cubic-bezier(.22,.61,.36,1)';
 
-        modalImage.style.transform=
-            direction==='next'
-            ?
-            'translateX(120%)'
-            :
-            'translateX(-120%)';
+        nextImageLayer.style.transition=
+        'transform .45s cubic-bezier(.22,.61,.36,1)';
 
 
+        currentIndex=newIndex;
 
-        requestAnimationFrame(()=>{
+        animating=false;
 
-            requestAnimationFrame(()=>{
+    },450);
 
-                modalImage.style.transition=
-                    'transform .35s ease';
-
-                modalImage.style.transform=
-                    'translateX(0)';
-
-            });
-
-        });
-
-
-
-        setTimeout(()=>{
-
-            oldImg.remove();
-
-            animating=false;
-
-        },350);
-
-    }
+}
 
 
 
@@ -437,10 +440,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    if(modal&&modalImage){
+    if(modal&&currentImage){
 
 
-        modalImage.addEventListener(
+        currentImage.addEventListener(
             'touchstart',
             (e)=>{
 
@@ -461,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isDragging=true;
 
 
-            modalImage.style.transition=
+            currentImage.style.transition=
                 'none';
 
         },{passive:true});
@@ -469,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-        modalImage.addEventListener(
+        currentImage.addEventListener(
             'touchmove',
             (e)=>{
 
@@ -520,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 axis==='x'
             ){
 
-                modalImage.style.transform=
+                currentImage.style.transform=
                 `translateX(
                     ${currentX}px
                 )`;
@@ -533,7 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 axis==='y'
             ){
 
-                modalImage.style.transform=
+                currentImage.style.transform=
                 `translateY(
                     ${currentY}px
                 )`;
@@ -546,7 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-        modalImage.addEventListener(
+        currentImage.addEventListener(
             'touchend',
             ()=>{
 
@@ -554,7 +557,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isDragging=false;
 
 
-            modalImage.style.transition=
+            currentImage.style.transition=
             'transform .25s ease';
 
 
@@ -605,7 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-            modalImage.style.transform=
+            currentImage.style.transform=
             'translate(0,0)';
 
 
