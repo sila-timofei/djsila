@@ -308,6 +308,7 @@
         opacity 0.3s ease,
         visibility 0.3s ease;
     z-index: 1000;
+    overflow: hidden;
 }
 
 .modal-show {
@@ -373,6 +374,20 @@
     background: rgba(0,0,0,0.8);
 }
 
+.lightbox-clone{
+
+    position:absolute;
+
+    max-width:90%;
+    max-height:90%;
+
+    object-fit:contain;
+
+    transition:
+    transform .35s ease;
+
+    z-index:999;
+}
 
 
 @media screen and (max-width: 940px) {
