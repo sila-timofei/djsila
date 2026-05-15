@@ -486,4 +486,8 @@
     .photo-w555,.photo-w278,.photo-w562-5,.photo-w370 {
         width: 100%;
     }
+
+    .wrap-video {
+        margin-bottom: 14px;
+    }
 }
