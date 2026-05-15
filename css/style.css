@@ -266,7 +266,7 @@
     }
 }
 
-@media screen and (max-width: 940px) {
+@media screen and (max-width: 640px) {
     .cards {
         margin-top: -10px;
     }
@@ -274,5 +274,22 @@
     .card-item {
         width: 100%;
         margin-top: 10px;
+    }
+
+    .card-item:hover .blackout {
+        background-color: rgba(0,0,0,0.25);
+    }
+
+    .card-item:hover .photo-playlist {
+        transform: scale(1);
+    }
+
+    .btn-card:hover span {
+        width: 0;
+        height: 0;
+    }
+
+    .btn-card:hover::after {
+        border: 3px solid white;
     }
 }
