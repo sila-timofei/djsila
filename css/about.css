@@ -261,6 +261,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 233;
 }
 
 .lightbox__arrow > span {
