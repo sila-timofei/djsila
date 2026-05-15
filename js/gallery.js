@@ -1,384 +1,296 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded',()=>{
 
     // =====================
-    // GALLERY SHOW MORE
-    // =====================
-
-    const galleryItemsWrap =
-        document.querySelectorAll('.gallery .wrap-photo');
-
-    const showMoreItem =
-        document.querySelector('.show-more-item');
-
-    let isExpanded=false;
-
-    const initialCount=8;
-
-
-    function applyGalleryState(){
-
-        galleryItemsWrap.forEach((item,index)=>{
-
-            if(
-                !isExpanded &&
-                item.classList.contains(
-                    'show-more-item'
-                )
-            ){
-
-                item.style.display='block';
-                return;
-
-            }
-
-            if(isExpanded){
-
-                item.style.display='block';
-                return;
-
-            }
-
-            item.style.display=
-                index<initialCount
-                ?'block'
-                :'none';
-
-        });
-
-    }
-
-
-    if(showMoreItem){
-
-        showMoreItem.addEventListener('click',()=>{
-
-            isExpanded=true;
-
-            applyGalleryState();
-
-            const overlay=
-                showMoreItem.querySelector(
-                    '.show-more-overlay'
-                );
-
-            if(overlay){
-
-                overlay.style.opacity='0';
-
-                overlay.style.pointerEvents='none';
-
-            }
-
-        });
-
-    }
-
-    applyGalleryState();
-
-
-
-    // =====================
-    // LIGHTBOX
-    // =====================
-
-    const modal=
-        document.querySelector('.modal');
-
-    const currentImage=
-        document.querySelector('.current-image');
-
-    const nextImageLayer=
-        document.querySelector('.next-image');
-
-    const closeBtn=
-        document.querySelector(
-            '.modal__btn-close'
-        );
-
-    let currentIndex=0;
-
-    let animating=false;
-
-
-
-    function getImages(){
-
-        return [...document.querySelectorAll(
-            '.photo-gallery'
-        )].map(
-            img=>img.src
-        );
-
-    }
-
-
-
-    // =====================
-    // PRELOAD
-    // =====================
-
-    const imageCache={};
-
-    function preload(src){
-
-        if(imageCache[src]) return;
-
-        const img=new Image();
-
-        img.src=src;
-
-        imageCache[src]=img;
-
-    }
-
-
-
-    function preloadNearby(){
-
-        const images=getImages();
-
-        const next=
-        (currentIndex+1)
-        %
-        images.length;
-
-        const prev=
-        (
-            currentIndex-1+
-            images.length
-        )
-        %
-        images.length;
-
-
-        preload(
-            images[next]
-        );
-
-        preload(
-            images[prev]
-        );
-
-    }
-
-
-
-    // начальная предзагрузка
-
-    getImages().forEach(src=>{
-
-        preload(src);
-
-    });
-
-
-
-
-
-    function openModal(index){
-
-        const images=getImages();
-
-        currentIndex=index;
-
-        currentImage.src=
-        images[currentIndex];
-
-        currentImage.style.transform=
-        'translateX(0)';
-
-        nextImageLayer.style.transform=
-        'translateX(150%)';
-
-        modal.classList.add(
-            'modal-show'
-        );
-
-
-        // ЖЕСТКО РУБИМ BODY
-
-        document.body.style.overflow='hidden';
-
-        document.documentElement.style.overflow='hidden';
-
-
-        preloadNearby();
-
-    }
-
-
-
-    function closeModal(){
-
-        modal.classList.remove(
-            'modal-show'
-        );
-
-
-        document.body.style.overflow='';
-
-        document.documentElement.style.overflow='';
-
-
-        setTimeout(()=>{
-
-            currentImage.src='';
-
-            nextImageLayer.src='';
-
-        },200);
-
-    }
-
-
-
-// =====================
-// SLIDE
+// GALLERY SHOW MORE
 // =====================
 
+const galleryItemsWrap=
+document.querySelectorAll(
+'.gallery .wrap-photo'
+);
 
-function changeImage(direction){
+const showMoreItem=
+document.querySelector(
+'.show-more-item'
+);
 
-    if(animating)return;
+let isExpanded=false;
 
-    animating=true;
-
-    const images=getImages();
-
-    let newIndex;
-
-
-    if(direction==='next'){
-
-        newIndex=
-        (currentIndex+1)
-        %
-        images.length;
-
-        nextImageLayer.style.transform=
-        'translateX(150%)';
-
-    }
-
-    else{
-
-        newIndex=
-        (
-            currentIndex-1+
-            images.length
-        )
-        %
-        images.length;
-
-        nextImageLayer.style.transform=
-        'translateX(-150%)';
-
-    }
+const initialCount=8;
 
 
+function applyGalleryState(){
 
-    nextImageLayer.src=
-    images[newIndex];
-
-
-
-    requestAnimationFrame(()=>{
-
-        requestAnimationFrame(()=>{
-
-            if(direction==='next'){
-
-                currentImage.style.transform=
-                'translateX(-100%)';
-
-            }
-
-            else{
-
-                currentImage.style.transform=
-                'translateX(100%)';
-
-            }
+galleryItemsWrap.forEach(
+(item,index)=>{
 
 
-            nextImageLayer.style.transform=
-            'translateX(0)';
+if(isExpanded){
 
-        });
+item.style.display=
+'block';
 
-    });
+return;
 
-
-
-    setTimeout(()=>{
-
-        currentImage.src=
-        images[newIndex];
-
-        currentImage.style.transition='none';
-
-        currentImage.style.transform=
-        'translateX(0)';
-
-        nextImageLayer.style.transition='none';
-
-        nextImageLayer.style.transform=
-        'translateX(150%)';
+}
 
 
+if(index<initialCount){
 
-        currentImage.offsetHeight;
+item.style.display=
+'block';
+
+}
+else{
+
+item.style.display=
+'none';
+
+}
 
 
+// карточка смотреть ещё
+if(
+item.classList.contains(
+'show-more-item'
+)
+){
 
-        currentImage.style.transition=
-        'transform .45s cubic-bezier(.22,.61,.36,1)';
+item.style.display=
+'block';
 
-        nextImageLayer.style.transition=
-        'transform .45s cubic-bezier(.22,.61,.36,1)';
+}
 
-
-
-        currentIndex=newIndex;
-
-        preloadNearby();
-
-        animating=false;
-
-    },450);
+});
 
 }
 
 
 
-function nextImage(){
+if(showMoreItem){
 
-    changeImage(
-        'next'
-    );
+showMoreItem.addEventListener(
+'click',
+(e)=>{
+
+e.stopPropagation();
+
+isExpanded=true;
+
+applyGalleryState();
+
+
+const overlay=
+showMoreItem.querySelector(
+'.show-more-overlay'
+);
+
+
+if(overlay){
+
+overlay.style.opacity='0';
+
+overlay.style.pointerEvents=
+'none';
+
+}
+
+});
+
+}
+
+
+applyGalleryState();
+
+const modal=
+document.querySelector('.modal');
+
+const currentImage=
+document.querySelector('.current-image');
+
+const nextImage=
+document.querySelector('.next-image');
+
+const closeBtn=
+document.querySelector('.modal__btn-close');
+
+let currentIndex=0;
+
+let startX=0;
+
+let currentX=0;
+
+let isDragging=false;
+
+let animating=false;
+
+let swipeDirection='next';
+
+
+
+function getImages(){
+
+return[
+...document.querySelectorAll(
+'.photo-gallery'
+)
+
+].map(img=>img.src)
 
 }
 
 
 
-function prevImage(){
+const imageCache={};
 
-    changeImage(
-        'prev'
-    );
+function preload(src){
+
+if(imageCache[src])return;
+
+const img=new Image();
+
+img.src=src;
+
+imageCache[src]=img;
 
 }
 
 
 
-function bindGalleryClicks(){
+function preloadNearby(){
+
+const images=getImages();
+
+const next=
+(currentIndex+1)
+%
+images.length;
+
+const prev=
+(
+currentIndex-1+
+images.length
+)
+%
+images.length;
+
+
+preload(
+images[next]
+);
+
+preload(
+images[prev]
+);
+
+}
+
+
+
+function openModal(index){
+
+const images=
+getImages();
+
+currentIndex=index;
+
+currentImage.src=
+images[index];
+
+modal.classList.add(
+'modal-show'
+);
+
+
+document.body.style.overflow=
+'hidden';
+
+document.documentElement.style.overflow=
+'hidden';
+
+
+preloadNearby();
+
+}
+
+
+
+function closeModal(){
+
+modal.classList.remove(
+'modal-show'
+);
+
+
+document.body.style.overflow='';
+
+document.documentElement.style.overflow='';
+
+
+setTimeout(()=>{
+
+currentImage.src='';
+
+nextImage.src='';
+
+},300);
+
+}
+
+
+
+function prepareNext(direction){
+
+const images=
+getImages();
+
+
+let index;
+
+
+if(direction==='next'){
+
+index=
+(currentIndex+1)
+%
+images.length;
+
+nextImage.style.transform=
+'translateX(100vw)';
+
+}
+
+else{
+
+index=
+(
+currentIndex-1+
+images.length
+)
+%
+images.length;
+
+nextImage.style.transform=
+'translateX(-100vw)';
+
+}
+
+
+nextImage.src=
+images[index];
+
+return index;
+
+}
+
+
 
 document
 .querySelectorAll(
 '.photo-gallery'
 )
-
-.forEach((item,index)=>{
+.forEach(
+(item,index)=>{
 
 item.addEventListener(
 'click',
@@ -392,47 +304,93 @@ index
 
 );
 
-});
-
 }
-
-
-bindGalleryClicks();
-
-
-
-
-// =====================
-// CONTROLS
-// =====================
-
-
-if(closeBtn){
-
-closeBtn.addEventListener(
-'click',
-closeModal
 );
 
-}
 
 
+function finishSwipe(direction){
 
-if(modal){
+if(animating)return;
 
-modal.addEventListener(
-'click',
-(e)=>{
+animating=true;
+
+
+const images=
+getImages();
+
+
+let newIndex=
+prepareNext(
+direction
+);
+
+
+requestAnimationFrame(()=>{
+
 
 if(
-e.target===modal
+direction==='next'
 ){
 
-closeModal();
+currentImage.style.transform=
+'translateX(-100vw)';
 
 }
 
+else{
+
+currentImage.style.transform=
+'translateX(100vw)';
+
+}
+
+
+nextImage.style.transform=
+'translateX(0)';
+
+
 });
+
+
+setTimeout(()=>{
+
+
+currentImage.src=
+images[newIndex];
+
+currentImage.style.transition=
+'none';
+
+nextImage.style.transition=
+'none';
+
+
+currentImage.style.transform=
+'translateX(0)';
+
+nextImage.style.transform=
+'translateX(120vw)';
+
+
+currentImage.offsetHeight;
+
+
+currentImage.style.transition=
+'transform .35s cubic-bezier(.22,.61,.36,1)';
+
+nextImage.style.transition=
+'transform .35s cubic-bezier(.22,.61,.36,1)';
+
+
+currentIndex=
+newIndex;
+
+preloadNearby();
+
+animating=false;
+
+},350);
 
 }
 
@@ -442,9 +400,15 @@ document
 .querySelector(
 '.lightbox__arrow_right'
 )
-?.addEventListener(
+.addEventListener(
 'click',
-nextImage
+()=>{
+
+finishSwipe(
+'next'
+)
+
+}
 );
 
 
@@ -452,169 +416,158 @@ document
 .querySelector(
 '.lightbox__arrow_left'
 )
-?.addEventListener(
+.addEventListener(
 'click',
-prevImage
+()=>{
+
+finishSwipe(
+'prev'
+)
+
+}
+);
+
+
+
+closeBtn.addEventListener(
+'click',
+closeModal
 );
 
 
 
 document.addEventListener(
 'keydown',
-(e)=>{
-
+e=>{
 
 if(
 !modal.classList.contains(
 'modal-show'
 )
-)
-return;
+)return;
 
 
 if(
 e.key==='Escape'
-){
-
+)
 closeModal();
-
-}
 
 
 if(
 e.key==='ArrowRight'
-){
-
-nextImage();
-
-}
+)
+finishSwipe(
+'next'
+);
 
 
 if(
 e.key==='ArrowLeft'
-){
+)
+finishSwipe(
+'prev'
+);
 
-prevImage();
 
 }
+);
 
-});
-
-
-
-
-// =====================
-// SWIPE
-// =====================
-
-
-let startX=0;
-
-let startY=0;
-
-let currentX=0;
-
-let currentY=0;
-
-let isDragging=false;
-
-let axis=null;
-
-
-if(modal&&currentImage){
 
 
 currentImage.addEventListener(
 'touchstart',
-(e)=>{
-
-
-const touch=
-e.touches[0];
-
+e=>{
 
 startX=
-touch.clientX;
-
-startY=
-touch.clientY;
+e.touches[0]
+.clientX;
 
 currentX=0;
 
-currentY=0;
-
-axis=null;
-
 isDragging=true;
 
-currentImage.style.transition='none';
-
-},
-{passive:true}
+}
 );
 
 
 
 currentImage.addEventListener(
 'touchmove',
-(e)=>{
+e=>{
+
 
 if(
 !isDragging
 )return;
 
 
-const touch=
-e.touches[0];
-
-
 currentX=
-touch.clientX-
+e.touches[0]
+.clientX
+-
 startX;
 
-currentY=
-touch.clientY-
-startY;
 
 
-if(!axis){
+if(currentX<0){
 
-axis=
-Math.abs(
-currentX
-)
->
-Math.abs(
-currentY
-)
-?
-'x'
-:
-'y';
+swipeDirection=
+'next';
+
+prepareNext(
+'next'
+);
+
+}
+else{
+
+swipeDirection=
+'prev';
+
+prepareNext(
+'prev'
+);
 
 }
 
 
 
-if(
-axis==='x'
-){
+currentImage.style.transition=
+'none';
+
+nextImage.style.transition=
+'none';
+
+
 
 currentImage.style.transform=
 `translateX(${currentX}px)`;
 
-}
-
-
 
 if(
-axis==='y'
+swipeDirection==='next'
 ){
 
-currentImage.style.transform=
-`translateY(${currentY}px)`;
+nextImage.style.transform=
+`
+translateX(
+${window.innerWidth+currentX}px
+)
+`;
 
 }
+
+else{
+
+nextImage.style.transform=
+`
+translateX(
+${-window.innerWidth+currentX}px
+)
+`;
+
+}
+
 
 
 },
@@ -632,48 +585,52 @@ currentImage.addEventListener(
 isDragging=false;
 
 
+currentImage.style.transition=
+'transform .35s cubic-bezier(.22,.61,.36,1)';
+
+nextImage.style.transition=
+'transform .35s cubic-bezier(.22,.61,.36,1)';
+
+
+
 if(
-axis==='x'
-&&
 Math.abs(
 currentX
-)>80
+)
+>
+80
 ){
 
-currentX>0
-?
-prevImage()
-:
-nextImage();
+finishSwipe(
+swipeDirection
+);
+
+return;
 
 }
 
+
+
+currentImage.style.transform=
+'translateX(0)';
 
 
 if(
-axis==='y'
-&&
-currentY<-100
+swipeDirection==='next'
 ){
 
-closeModal();
+nextImage.style.transform=
+'translateX(100vw)';
+
+}
+else{
+
+nextImage.style.transform=
+'translateX(-100vw)';
 
 }
 
 
-currentImage.style.transition=
-'transform .25s ease';
-
-currentImage.style.transform=
-'translate(0,0)';
-
-axis=null;
-
-
-},
-{passive:true}
-);
-
-}
+});
 
 });
