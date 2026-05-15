@@ -243,4 +243,21 @@
     .text-thank {
         white-space: normal;
     }
+
+    .card-item:hover .blackout {
+        background-color: rgba(0,0,0,0.25);
+    }
+
+    .card-item:hover .photo-playlist {
+        transform: scale(1);
+    }
+
+    .btn-card:hover span {
+        width: 0;
+        height: 0;
+    }
+
+    .btn-card:hover::after {
+        border: 3px solid white;
+    }
 }
