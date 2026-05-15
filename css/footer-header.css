@@ -177,7 +177,9 @@ html {
 }
 
 .hidden-body {
-    overflow: hidden;
+    overflow:hidden !important;
+    touch-action:none;
+    height:100vh;
 }
 
 
