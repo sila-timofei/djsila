@@ -490,4 +490,20 @@
     .wrap-video {
         margin-bottom: 14px;
     }
+
+    .wrap-photo:hover::after {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .photo-gallery:hover {
+        transform: scale(1);
+    }
+
+    .show-more-item:hover .show-more-overlay {
+        background: rgba(0, 0, 0, 0);
+    }
+
+    .wrap-video:hover::after{
+        background:rgba(0,0,0,0);
+    }
 }
