@@ -84,10 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal=
         document.querySelector('.modal');
 
-        const currentImage=
+    const currentImage=
         document.querySelector('.current-image');
 
-        const nextImageLayer=
+    const nextImageLayer=
         document.querySelector('.next-image');
 
     const closeBtn=
@@ -95,10 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
             '.modal__btn-close'
         );
 
-
     let currentIndex=0;
 
-    
+    let animating=false;
 
 
 
@@ -111,6 +110,68 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
     }
+
+
+
+    // =====================
+    // PRELOAD
+    // =====================
+
+    const imageCache={};
+
+    function preload(src){
+
+        if(imageCache[src]) return;
+
+        const img=new Image();
+
+        img.src=src;
+
+        imageCache[src]=img;
+
+    }
+
+
+
+    function preloadNearby(){
+
+        const images=getImages();
+
+        const next=
+        (currentIndex+1)
+        %
+        images.length;
+
+        const prev=
+        (
+            currentIndex-1+
+            images.length
+        )
+        %
+        images.length;
+
+
+        preload(
+            images[next]
+        );
+
+        preload(
+            images[prev]
+        );
+
+    }
+
+
+
+    // начальная предзагрузка
+
+    getImages().forEach(src=>{
+
+        preload(src);
+
+    });
+
+
 
 
 
@@ -133,9 +194,15 @@ document.addEventListener('DOMContentLoaded', () => {
             'modal-show'
         );
 
-        document.body.classList.add(
-            'hidden-body'
-        );
+
+        // ЖЕСТКО РУБИМ BODY
+
+        document.body.style.overflow='hidden';
+
+        document.documentElement.style.overflow='hidden';
+
+
+        preloadNearby();
 
     }
 
@@ -147,14 +214,17 @@ document.addEventListener('DOMContentLoaded', () => {
             'modal-show'
         );
 
-        document.body.classList.remove(
-            'hidden-body'
-        );
+
+        document.body.style.overflow='';
+
+        document.documentElement.style.overflow='';
 
 
         setTimeout(()=>{
 
-            modalImage.src='';
+            currentImage.src='';
+
+            nextImageLayer.src='';
 
         },200);
 
@@ -162,13 +232,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+// =====================
+// SLIDE
+// =====================
 
-    // =====================
-    // NEW SLIDE ANIMATION
-    // =====================
-
-
-let animating=false;
 
 function changeImage(direction){
 
@@ -209,6 +276,7 @@ function changeImage(direction){
     }
 
 
+
     nextImageLayer.src=
     images[newIndex];
 
@@ -216,21 +284,27 @@ function changeImage(direction){
 
     requestAnimationFrame(()=>{
 
-        if(direction==='next'){
+        requestAnimationFrame(()=>{
 
-            currentImage.style.transform=
-            'translateX(-150%)';
+            if(direction==='next'){
 
-        }else{
+                currentImage.style.transform=
+                'translateX(-100%)';
 
-            currentImage.style.transform=
-            'translateX(150%)';
+            }
 
-        }
+            else{
+
+                currentImage.style.transform=
+                'translateX(100%)';
+
+            }
 
 
-        nextImageLayer.style.transform=
-        'translateX(0)';
+            nextImageLayer.style.transform=
+            'translateX(0)';
+
+        });
 
     });
 
@@ -252,7 +326,9 @@ function changeImage(direction){
         'translateX(150%)';
 
 
+
         currentImage.offsetHeight;
+
 
 
         currentImage.style.transition=
@@ -262,7 +338,10 @@ function changeImage(direction){
         'transform .45s cubic-bezier(.22,.61,.36,1)';
 
 
+
         currentIndex=newIndex;
+
+        preloadNearby();
 
         animating=false;
 
@@ -272,351 +351,329 @@ function changeImage(direction){
 
 
 
-    function nextImage(){
+function nextImage(){
 
-        changeImage('next');
+    changeImage(
+        'next'
+    );
 
-    }
+}
 
 
-    function prevImage(){
 
-        changeImage('prev');
+function prevImage(){
 
-    }
+    changeImage(
+        'prev'
+    );
 
+}
 
 
-    function bindGalleryClicks(){
 
-        document
-        .querySelectorAll(
-            '.photo-gallery'
-        )
+function bindGalleryClicks(){
 
-        .forEach((item,index)=>{
+document
+.querySelectorAll(
+'.photo-gallery'
+)
 
-            item.addEventListener(
-                'click',
-                ()=>{
+.forEach((item,index)=>{
 
-                    openModal(index);
+item.addEventListener(
+'click',
+()=>{
 
-                }
-            );
+openModal(
+index
+);
 
-        });
+}
 
-    }
+);
 
-    bindGalleryClicks();
+});
 
+}
 
 
+bindGalleryClicks();
 
-    // =====================
-    // CONTROLS
-    // =====================
 
-    if(closeBtn){
 
-        closeBtn.addEventListener(
-            'click',
-            closeModal
-        );
 
-    }
+// =====================
+// CONTROLS
+// =====================
 
 
-    if(modal){
+if(closeBtn){
 
-        modal.addEventListener(
-            'click',
-            (e)=>{
+closeBtn.addEventListener(
+'click',
+closeModal
+);
 
-            if(
-                e.target===modal
-            ){
+}
 
-                closeModal();
 
-            }
 
-        });
+if(modal){
 
-    }
+modal.addEventListener(
+'click',
+(e)=>{
 
+if(
+e.target===modal
+){
 
+closeModal();
 
-    const rightArrow=
-        document.querySelector(
-            '.lightbox__arrow_right'
-        );
+}
 
-    const leftArrow=
-        document.querySelector(
-            '.lightbox__arrow_left'
-        );
+});
 
+}
 
-    if(rightArrow){
 
-        rightArrow.addEventListener(
-            'click',
-            nextImage
-        );
 
-    }
+document
+.querySelector(
+'.lightbox__arrow_right'
+)
+?.addEventListener(
+'click',
+nextImage
+);
 
 
-    if(leftArrow){
+document
+.querySelector(
+'.lightbox__arrow_left'
+)
+?.addEventListener(
+'click',
+prevImage
+);
 
-        leftArrow.addEventListener(
-            'click',
-            prevImage
-        );
 
-    }
 
+document.addEventListener(
+'keydown',
+(e)=>{
 
 
-    document.addEventListener(
-        'keydown',
-        (e)=>{
+if(
+!modal.classList.contains(
+'modal-show'
+)
+)
+return;
 
-        if(
-            !modal ||
-            !modal.classList.contains(
-                'modal-show'
-            )
-        ) return;
 
+if(
+e.key==='Escape'
+){
 
-        if(
-            e.key==='Escape'
-        ){
+closeModal();
 
-            closeModal();
+}
 
-        }
 
+if(
+e.key==='ArrowRight'
+){
 
-        if(
-            e.key==='ArrowRight'
-        ){
+nextImage();
 
-            nextImage();
+}
 
-        }
 
+if(
+e.key==='ArrowLeft'
+){
 
-        if(
-            e.key==='ArrowLeft'
-        ){
+prevImage();
 
-            prevImage();
+}
 
-        }
+});
 
-    });
 
 
 
+// =====================
+// SWIPE
+// =====================
 
-    // =====================
-    // SWIPE + DRAG
-    // =====================
 
+let startX=0;
 
-    let startX=0;
-    let startY=0;
+let startY=0;
 
-    let currentX=0;
-    let currentY=0;
+let currentX=0;
 
-    let isDragging=false;
+let currentY=0;
 
-    let axis=null;
+let isDragging=false;
 
+let axis=null;
 
 
-    if(modal&&currentImage){
+if(modal&&currentImage){
 
 
-        currentImage.addEventListener(
-            'touchstart',
-            (e)=>{
+currentImage.addEventListener(
+'touchstart',
+(e)=>{
 
-            const touch=
-                e.touches[0];
 
-            startX=
-                touch.clientX;
+const touch=
+e.touches[0];
 
-            startY=
-                touch.clientY;
 
-            currentX=0;
-            currentY=0;
+startX=
+touch.clientX;
 
-            axis=null;
+startY=
+touch.clientY;
 
-            isDragging=true;
+currentX=0;
 
+currentY=0;
 
-            currentImage.style.transition=
-                'none';
+axis=null;
 
-        },{passive:true});
+isDragging=true;
 
+currentImage.style.transition='none';
 
+},
+{passive:true}
+);
 
 
-        currentImage.addEventListener(
-            'touchmove',
-            (e)=>{
 
-            if(
-                !isDragging
-            )return;
+currentImage.addEventListener(
+'touchmove',
+(e)=>{
 
+if(
+!isDragging
+)return;
 
-            const touch=
-                e.touches[0];
 
+const touch=
+e.touches[0];
 
-            currentX=
-                touch.clientX-
-                startX;
 
-            currentY=
-                touch.clientY-
-                startY;
+currentX=
+touch.clientX-
+startX;
 
+currentY=
+touch.clientY-
+startY;
 
 
-            if(!axis){
+if(!axis){
 
-                if(
-                    Math.abs(
-                        currentX
-                    )
-                    >
-                    Math.abs(
-                        currentY
-                    )
-                ){
+axis=
+Math.abs(
+currentX
+)
+>
+Math.abs(
+currentY
+)
+?
+'x'
+:
+'y';
 
-                    axis='x';
+}
 
-                }else{
 
-                    axis='y';
 
-                }
+if(
+axis==='x'
+){
 
-            }
+currentImage.style.transform=
+`translateX(${currentX}px)`;
 
+}
 
 
-            if(
-                axis==='x'
-            ){
 
-                currentImage.style.transform=
-                `translateX(
-                    ${currentX}px
-                )`;
+if(
+axis==='y'
+){
 
-            }
+currentImage.style.transform=
+`translateY(${currentY}px)`;
 
+}
 
 
-            if(
-                axis==='y'
-            ){
+},
+{passive:true}
+);
 
-                currentImage.style.transform=
-                `translateY(
-                    ${currentY}px
-                )`;
 
-            }
 
 
-        },{passive:true});
+currentImage.addEventListener(
+'touchend',
+()=>{
 
 
+isDragging=false;
 
 
-        currentImage.addEventListener(
-            'touchend',
-            ()=>{
+if(
+axis==='x'
+&&
+Math.abs(
+currentX
+)>80
+){
 
+currentX>0
+?
+prevImage()
+:
+nextImage();
 
-            isDragging=false;
+}
 
 
-            currentImage.style.transition=
-            'transform .25s ease';
 
+if(
+axis==='y'
+&&
+currentY<-100
+){
 
+closeModal();
 
-            const absX=
-                Math.abs(
-                    currentX
-                );
+}
 
-            const absY=
-                Math.abs(
-                    currentY
-                );
 
+currentImage.style.transition=
+'transform .25s ease';
 
+currentImage.style.transform=
+'translate(0,0)';
 
-            if(
-                axis==='x'
-                &&
-                absX>80
-            ){
+axis=null;
 
-                if(
-                    currentX>0
-                ){
 
-                    prevImage();
+},
+{passive:true}
+);
 
-                }else{
-
-                    nextImage();
-
-                }
-
-            }
-
-
-
-            if(
-                axis==='y'
-                &&
-                currentY<-100
-            ){
-
-                closeModal();
-
-            }
-
-
-
-            currentImage.style.transform=
-            'translate(0,0)';
-
-
-            axis=null;
-
-
-        },{passive:true});
-
-    }
+}
 
 });
